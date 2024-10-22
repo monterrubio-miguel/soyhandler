@@ -201,17 +201,17 @@ const TournamentPrediction = () => {
   };
 
   const BracketMatch = ({ match, round, matchIndex }) => (
-    <div className="flex flex-col gap-2 p-3 bg-white rounded-lg shadow transition-all duration-300">
+    <div className="flex flex-col gap-2 p-3 bg-white rounded-lg shadow transition-all duration-300 flex-1">
       <div
         onClick={() => match.team1 && handleWinner(round, matchIndex, match.team1)}
-        className={`p-2 rounded cursor-pointer text-sm transition-all duration-300
+        className={`p-2 rounded cursor-pointer text-sm transition-all duration-300 w-full
           ${match.winner === match.team1 ? 'bg-green-100 transform scale-105' : 'hover:bg-gray-100'}`}
       >
         {match.team1 || 'TBD'}
       </div>
       <div
         onClick={() => match.team2 && handleWinner(round, matchIndex, match.team2)}
-        className={`p-2 rounded cursor-pointer text-sm transition-all duration-300
+        className={`p-2 rounded cursor-pointer text-sm transition-all duration-300 w-full
           ${match.winner === match.team2 ? 'bg-green-100 transform scale-105' : 'hover:bg-gray-100'}`}
       >
         {match.team2 || 'TBD'}
@@ -313,33 +313,53 @@ const TournamentPrediction = () => {
       {showBracket && (
         <div className="mt-8 transition-all duration-300">
           <h2 className="text-xl font-semibold mb-4">Championship Bracket</h2>
-          <Card className="p-6">
-            <div className="flex justify-between gap-6">
-              <div className="flex flex-col gap-8">
-                <h3 className="font-semibold">Pre-Quarters</h3>
+          <Card className="p-4 lg:p-6">
+            <div className="flex flex-col lg:flex-row lg:justify-between gap-8 lg:gap-6">
+              <div className="flex flex-col gap-4 lg:gap-8">
+                <div className="sticky top-0 bg-white z-10 py-2">
+                  <h3 className="font-semibold">Pre-Quarters</h3>
+                </div>
                 {bracketResults.preQuarters.map((match, i) => (
-                  <BracketMatch key={i} match={match} round="preQuarters" matchIndex={i} />
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-8 text-sm text-gray-500">G{i + 1}</div>
+                    <BracketMatch match={match} round="preQuarters" matchIndex={i} />
+                  </div>
                 ))}
               </div>
 
-              <div className="flex flex-col gap-8">
-                <h3 className="font-semibold">Quarter Finals</h3>
+              <div className="flex flex-col gap-4 lg:gap-8">
+                <div className="sticky top-0 bg-white z-10 py-2">
+                  <h3 className="font-semibold">Quarter Finals</h3>
+                </div>
                 {bracketResults.quarterFinals.map((match, i) => (
-                  <BracketMatch key={i} match={match} round="quarterFinals" matchIndex={i} />
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-8 text-sm text-gray-500">G{i + 1}</div>
+                    <BracketMatch match={match} round="quarterFinals" matchIndex={i} />
+                  </div>
                 ))}
               </div>
 
-              <div className="flex flex-col gap-8 mt-16">
-                <h3 className="font-semibold">Semi Finals</h3>
+              <div className="flex flex-col gap-4 lg:gap-8 lg:mt-16">
+                <div className="sticky top-0 bg-white z-10 py-2">
+                  <h3 className="font-semibold">Semi Finals</h3>
+                </div>
                 {bracketResults.semiFinals.map((match, i) => (
-                  <BracketMatch key={i} match={match} round="semiFinals" matchIndex={i} />
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-8 text-sm text-gray-500">G{i + 1}</div>
+                    <BracketMatch match={match} round="semiFinals" matchIndex={i} />
+                  </div>
                 ))}
               </div>
 
-              <div className="flex flex-col mt-32">
-                <h3 className="font-semibold">Finals</h3>
+              <div className="flex flex-col gap-4 lg:mt-32">
+                <div className="sticky top-0 bg-white z-10 py-2">
+                  <h3 className="font-semibold">Finals</h3>
+                </div>
                 {bracketResults.finals.map((match, i) => (
-                  <BracketMatch key={i} match={match} round="finals" matchIndex={i} />
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-8 text-sm text-gray-500">G{i + 1}</div>
+                    <BracketMatch match={match} round="finals" matchIndex={i} />
+                  </div>
                 ))}
               </div>
             </div>
