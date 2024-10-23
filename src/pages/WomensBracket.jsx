@@ -2,10 +2,10 @@ import TournamentPrediction from '../components/TournamentPrediction';
 import BracketNav from '../components/BracketNav';
 
 const womensDivisionTeams = {
-  A: ['Fury', 'Phoenix', 'Flipside', 'Underground'],
-  B: ['Molly Brown', 'Scandal', 'Parcha', 'Nemesis'],
-  C: ['Raleigh Radiance', 'Pop', 'Fight Club', 'Bent'],
-  D: ['Siege', 'Schwa', 'Wildfire', 'Traffic'],
+  A: ['Fury', 'Flipside', 'Traffic', 'Nemesis'],
+  B: ['Scandal', 'BENT', 'Schwa', 'Parcha'],
+  C: ['Brute Squad', 'Molly Brown', '6ixers', 'Pop'],
+  D: ['Phoenix', 'Seattle Riot', 'Iris', 'Grit'],
 };
 
 function WomensBracket() {
