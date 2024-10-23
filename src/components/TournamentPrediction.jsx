@@ -2,29 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Card } from '../components/ui/card';
 import { ChevronUp, ChevronDown, Share2 } from 'lucide-react';
 
-const initialGroups = {
-  A: ['Chicago Machine', 'Sockeye', 'PoNY', 'Raleigh-Durham United'],
-  B: ['DiG', 'Ring of Fire', 'GOAT', 'Mallard'],
-  C: ['Johnny Bravo', 'Rhino Slam!', 'Chain Lightning', 'Furious George'],
-  D: ['Revolver', 'Truck Stop', 'Doublewide', 'Shrimp'],
-};
-
-const TournamentPrediction = () => {
+const TournamentPrediction = ({ initialTeams, division }) => {
   const [rankings, setRankings] = useState(() => {
-    const saved = localStorage.getItem('poolRankings');
+    const saved = localStorage.getItem(`poolRankings-${division}`);
     return saved
       ? JSON.parse(saved)
       : {
-          A: [...initialGroups.A],
-          B: [...initialGroups.B],
-          C: [...initialGroups.C],
-          D: [...initialGroups.D],
+          A: [...initialTeams.A],
+          B: [...initialTeams.B],
+          C: [...initialTeams.C],
+          D: [...initialTeams.D],
         };
   });
 
   const [showBracket, setShowBracket] = useState(false);
   const [bracketResults, setBracketResults] = useState(() => {
-    const saved = localStorage.getItem('bracketResults');
+    const saved = localStorage.getItem(`bracketResults-${division}`);
     return saved
       ? JSON.parse(saved)
       : {
@@ -36,12 +29,12 @@ const TournamentPrediction = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('poolRankings', JSON.stringify(rankings));
-  }, [rankings]);
+    localStorage.setItem(`poolRankings-${division}`, JSON.stringify(rankings));
+  }, [rankings, division]);
 
   useEffect(() => {
-    localStorage.setItem('bracketResults', JSON.stringify(bracketResults));
-  }, [bracketResults]);
+    localStorage.setItem(`bracketResults-${division}`, JSON.stringify(bracketResults));
+  }, [bracketResults, division]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -276,14 +269,14 @@ const TournamentPrediction = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-8 text-center">USAU Nationals Predictions</h1>
+      <h1 className="text-2xl font-bold mb-8 text-center">Bracket USAU Nationals</h1>
 
       <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-4">Pool Play</h2>
+        <h2 className="text-xl font-semibold mb-4">Fase de Grupos</h2>
         <p className="mb-4 text-gray-600">
-          Use the up/down arrows to reorder teams and predict their final position in each pool.
-          <span className="text-blue-600"> First place</span> teams advance directly to quarter-finals.
-          <span className="text-green-600"> Second and third place</span> teams play in pre-quarters.
+          Usa las flechas para reordenar los equipos y predecir su posición final en cada grupo
+          <span className="text-blue-600"> Primer lugar</span> avanza directamente a cuartos de final
+          <span className="text-green-600"> Segundo y tercer lugar</span> juegan pre-cuartos
         </p>
         <GroupStage />
       </div>
@@ -305,7 +298,7 @@ const TournamentPrediction = () => {
             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 inline-flex items-center gap-2 transition-colors duration-200"
           >
             <Share2 className="w-4 h-4" />
-            Share Predictions
+            Compartir Bracket
           </button>
         )}
       </div>
@@ -317,7 +310,7 @@ const TournamentPrediction = () => {
             <div className="flex flex-col lg:flex-row lg:justify-between gap-8 lg:gap-6">
               <div className="flex flex-col gap-4 lg:gap-8">
                 <div className="sticky top-0 bg-white z-10 py-2">
-                  <h3 className="font-semibold">Pre-Quarters</h3>
+                  <h3 className="font-semibold">Pre-Cuartos</h3>
                 </div>
                 {bracketResults.preQuarters.map((match, i) => (
                   <div key={i} className="flex items-center gap-4">
@@ -329,7 +322,7 @@ const TournamentPrediction = () => {
 
               <div className="flex flex-col gap-4 lg:gap-8">
                 <div className="sticky top-0 bg-white z-10 py-2">
-                  <h3 className="font-semibold">Quarter Finals</h3>
+                  <h3 className="font-semibold">Cuartos de Final</h3>
                 </div>
                 {bracketResults.quarterFinals.map((match, i) => (
                   <div key={i} className="flex items-center gap-4">
@@ -341,7 +334,7 @@ const TournamentPrediction = () => {
 
               <div className="flex flex-col gap-4 lg:gap-8 lg:mt-16">
                 <div className="sticky top-0 bg-white z-10 py-2">
-                  <h3 className="font-semibold">Semi Finals</h3>
+                  <h3 className="font-semibold">Semifinal</h3>
                 </div>
                 {bracketResults.semiFinals.map((match, i) => (
                   <div key={i} className="flex items-center gap-4">
@@ -353,7 +346,7 @@ const TournamentPrediction = () => {
 
               <div className="flex flex-col gap-4 lg:mt-32">
                 <div className="sticky top-0 bg-white z-10 py-2">
-                  <h3 className="font-semibold">Finals</h3>
+                  <h3 className="font-semibold">Final</h3>
                 </div>
                 {bracketResults.finals.map((match, i) => (
                   <div key={i} className="flex items-center gap-4">
@@ -366,7 +359,7 @@ const TournamentPrediction = () => {
 
             {bracketResults.finals[0].winner && (
               <div className="mt-8 text-center">
-                <h3 className="text-xl font-bold">Champion</h3>
+                <h3 className="text-xl font-bold">Campeón</h3>
                 <div className="text-2xl text-green-600 font-bold mt-2">{bracketResults.finals[0].winner}</div>
               </div>
             )}
