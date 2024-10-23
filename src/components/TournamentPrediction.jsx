@@ -302,8 +302,14 @@ const TournamentPrediction = ({ initialTeams, division }) => {
 
         {showBracket && (
           <button
-            onClick={shareState}
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 inline-flex items-center gap-2 transition-colors duration-200"
+            onClick={bracketResults.finals[0].winner ? shareState : undefined}
+            className={`px-4 py-2 rounded inline-flex items-center gap-2 transition-colors duration-200
+        ${
+          bracketResults.finals[0].winner
+            ? 'bg-green-600 hover:bg-green-700 text-white cursor-pointer'
+            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+        }`}
+            title={bracketResults.finals[0].winner ? 'Compartir Bracket' : 'Termina el bracket para compartir'}
           >
             <Share2 className="w-4 h-4" />
             Compartir Bracket
