@@ -24,7 +24,10 @@ function HomePage() {
       <div className="max-w-4xl mx-auto px-4">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-4 md:mb-6">Soy Handler Meto Gol</h1>
         <div className="text-center mb-6 md:mb-8">
-          <p className="text-base md:text-lg text-gray-600 mb-4">Tu podcast de Ultimate Frisbee en español.</p>
+          <p className="text-base md:text-lg text-gray-600 mb-4">
+            Presentado por Mateo y Primo, dos amigos dando su opinión sobre Ultimate, a veces controversial... Fénixes que intentan ser
+            objetivos.
+          </p>
         </div>
         <div className="flex justify-center gap-6 md:gap-8 mb-8 md:mb-12">
           <a
@@ -60,13 +63,13 @@ function HomePage() {
             to="/varonil"
             className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center text-sm md:text-base font-medium"
           >
-            División Varonil
+            Bracket Varonil
           </Link>
           <Link
             to="/femenil"
             className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center text-sm md:text-base font-medium"
           >
-            División Femenil
+            Bracket Femenil
           </Link>
         </div>
       </div>
