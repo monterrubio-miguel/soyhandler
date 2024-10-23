@@ -58,15 +58,15 @@ function HomePage() {
         <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
           <Link
             to="/varonil"
-            className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center"
+            className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center text-sm md:text-base font-medium"
           >
-            USAU Nationals 2024 División Varonil
+            División Varonil
           </Link>
           <Link
             to="/femenil"
-            className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center"
+            className="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-center text-sm md:text-base font-medium"
           >
-            USAU Nationals 2024 División Femenil
+            División Femenil
           </Link>
         </div>
       </div>

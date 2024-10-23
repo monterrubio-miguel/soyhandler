@@ -244,14 +244,14 @@ const TournamentPrediction = ({ initialTeams, division }) => {
                 <div className="flex gap-1">
                   <button
                     onClick={() => moveTeam(poolLetter, index, 'up')}
-                    className="p-1 hover:bg-gray-200 rounded transition-colors duration-200"
+                    className="p-1 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded transition-colors duration-200"
                     disabled={index === 0}
                   >
                     <ChevronUp className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => moveTeam(poolLetter, index, 'down')}
-                    className="p-1 hover:bg-gray-200 rounded transition-colors duration-200"
+                    className="p-1 bg-gray-100 text-gray-600 hover:bg-gray-200 rounded transition-colors duration-200"
                     disabled={index === teams.length - 1}
                   >
                     <ChevronDown className="w-4 h-4" />
