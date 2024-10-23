@@ -37,27 +37,35 @@ const TournamentPrediction = ({ initialTeams, division }) => {
   }, [bracketResults, division]);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const encodedData = params.get('state');
+    // With HashRouter, we need to parse the hash part of the URL
+    const hash = window.location.hash;
+    const searchParams = new URLSearchParams(hash.split('?')[1]);
+    const encodedData = searchParams.get('state');
+
     if (encodedData) {
       try {
         const decodedData = JSON.parse(atob(encodedData));
-        setRankings(decodedData.rankings);
-        setBracketResults(decodedData.bracketResults);
-        setShowBracket(true);
+        // Only load if the division matches
+        if (decodedData.division === division) {
+          setRankings(decodedData.rankings);
+          setBracketResults(decodedData.bracketResults);
+          setShowBracket(true);
+        }
       } catch (e) {
         console.error('Failed to load state from URL');
       }
     }
-  }, []);
+  }, [division]);
 
   const shareState = () => {
     const state = {
       rankings,
       bracketResults,
+      division, // Include division in shared state
     };
     const encodedState = btoa(JSON.stringify(state));
-    const url = `${window.location.origin}${window.location.pathname}?state=${encodedState}`;
+    // For HashRouter, we need to include the current path
+    const url = `${window.location.origin}${window.location.pathname}#${window.location.pathname}?state=${encodedState}`;
 
     if (navigator.clipboard) {
       navigator.clipboard
