@@ -4,7 +4,7 @@ import { ChevronUp, ChevronDown, Share2 } from 'lucide-react';
 
 const TournamentPrediction = ({ initialTeams, division }) => {
   const [rankings, setRankings] = useState(() => {
-    const saved = localStorage.getItem(`poolRankings-${division}`);
+    const saved = localStorage.getItem(`rankings-${division}`);
     return saved
       ? JSON.parse(saved)
       : {
@@ -17,7 +17,7 @@ const TournamentPrediction = ({ initialTeams, division }) => {
 
   const [showBracket, setShowBracket] = useState(false);
   const [bracketResults, setBracketResults] = useState(() => {
-    const saved = localStorage.getItem(`bracketResults-${division}`);
+    const saved = localStorage.getItem(`results-${division}`);
     return saved
       ? JSON.parse(saved)
       : {
@@ -29,11 +29,11 @@ const TournamentPrediction = ({ initialTeams, division }) => {
   });
 
   useEffect(() => {
-    localStorage.setItem(`poolRankings-${division}`, JSON.stringify(rankings));
+    localStorage.setItem(`rankings-${division}`, JSON.stringify(rankings));
   }, [rankings, division]);
 
   useEffect(() => {
-    localStorage.setItem(`bracketResults-${division}`, JSON.stringify(bracketResults));
+    localStorage.setItem(`results-${division}`, JSON.stringify(bracketResults));
   }, [bracketResults, division]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const TournamentPrediction = ({ initialTeams, division }) => {
     };
     const encodedState = btoa(JSON.stringify(state));
     // For HashRouter, we need to include the current path
-    const url = `${window.location.origin}${window.location.pathname}#${window.location.pathname}?state=${encodedState}`;
+    const url = `${window.location.origin}/#/${division === 'mens' ? 'varonil' : 'femenil'}/?state=${encodedState}`;
 
     if (navigator.clipboard) {
       navigator.clipboard
