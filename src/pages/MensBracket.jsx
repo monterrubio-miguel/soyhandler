@@ -10,9 +10,11 @@ const mensDivisionTeams = {
 
 function MensBracket() {
   return (
-    <div>
-      <BracketNav />
-      <TournamentPrediction initialTeams={mensDivisionTeams} division="mens" />
+    <div className="min-h-screen w-full bg-gray-50">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <BracketNav />
+        <TournamentPrediction initialTeams={mensDivisionTeams} division="mens" />
+      </div>
     </div>
   );
 }

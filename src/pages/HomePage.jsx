@@ -3,14 +3,12 @@ import { Instagram, Twitter, Home } from 'lucide-react';
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-8 md:py-16">
+    <div className="min-h-screen w-full bg-gray-50 flex items-center justify-center">
+      <div className="max-w-4xl mx-auto px-4">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-4 md:mb-6">Soy Handler Meto Gol</h1>
-
         <div className="text-center mb-6 md:mb-8">
           <p className="text-base md:text-lg text-gray-600 mb-4">Tu podcast de Ultimate Frisbee en español.</p>
         </div>
-
         <div className="flex justify-center gap-4 md:gap-6 mb-8 md:mb-12">
           <a
             href="https://instagram.com/soyhandlermetogol"
@@ -31,7 +29,6 @@ function HomePage() {
             <Twitter size={24} />
           </a>
         </div>
-
         <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
           <Link
             to="/varonil"
